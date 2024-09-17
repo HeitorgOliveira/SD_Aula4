@@ -1,0 +1,97 @@
+|Contador_8bits
+clk => flipflop_t:FF0.clk
+clk => flipflop_t:FF1.clk
+clk => flipflop_t:FF2.clk
+clk => flipflop_t:FF3.clk
+clk => flipflop_t:FF4.clk
+clk => flipflop_t:FF5.clk
+clk => flipflop_t:FF6.clk
+clk => flipflop_t:FF7.clk
+rst => flipflop_t:FF0.rst
+rst => flipflop_t:FF1.rst
+rst => flipflop_t:FF2.rst
+rst => flipflop_t:FF3.rst
+rst => flipflop_t:FF4.rst
+rst => flipflop_t:FF5.rst
+rst => flipflop_t:FF6.rst
+rst => flipflop_t:FF7.rst
+enable => comb.IN1
+enable => comb.IN1
+enable => comb.IN1
+enable => comb.IN1
+enable => comb.IN1
+enable => comb.IN1
+enable => comb.IN1
+enable => flipflop_t:FF0.T
+HEX0[0] << Mux6.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[1] << Mux5.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[2] << Mux4.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[3] << Mux3.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[4] << Mux2.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[5] << Mux1.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[6] << Mux0.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[0] << Mux13.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[1] << Mux12.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[2] << Mux11.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[3] << Mux10.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[4] << Mux9.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[5] << Mux8.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[6] << Mux7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Contador_8bits|FlipFlop_T:FF0
+T => Q_int.ENA
+clk => Q_int.CLK
+rst => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Contador_8bits|FlipFlop_T:FF1
+T => Q_int.ENA
+clk => Q_int.CLK
+rst => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Contador_8bits|FlipFlop_T:FF2
+T => Q_int.ENA
+clk => Q_int.CLK
+rst => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Contador_8bits|FlipFlop_T:FF3
+T => Q_int.ENA
+clk => Q_int.CLK
+rst => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Contador_8bits|FlipFlop_T:FF4
+T => Q_int.ENA
+clk => Q_int.CLK
+rst => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Contador_8bits|FlipFlop_T:FF5
+T => Q_int.ENA
+clk => Q_int.CLK
+rst => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Contador_8bits|FlipFlop_T:FF6
+T => Q_int.ENA
+clk => Q_int.CLK
+rst => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Contador_8bits|FlipFlop_T:FF7
+T => Q_int.ENA
+clk => Q_int.CLK
+rst => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+

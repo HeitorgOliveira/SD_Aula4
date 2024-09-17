@@ -1,0 +1,64 @@
+--codigo de um slow counter
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity SlowCounter is
+    Port (
+        clk       : in  STD_LOGIC;   -- Clock de 50 MHz
+        rst       : in  STD_LOGIC;   -- Reset
+        digit_out : out STD_LOGIC_VECTOR (3 downto 0)  -- Saída para os dígitos (0 a 9)
+    );
+end SlowCounter;
+
+architecture Behavioral of SlowCounter is
+
+    -- Sinal para o contador de 26 bits
+    signal count_26bit : STD_LOGIC_VECTOR (25 downto 0) := (others => '0');
+    
+    -- Sinal de habilitação para o contador lento
+    signal enable_slow_count : STD_LOGIC := '0';
+    
+    -- Contador lento para exibir os dígitos de 0 a 9
+    signal slow_count : STD_LOGIC_VECTOR (3 downto 0) := (others => '0');
+
+begin
+
+    -- Processo do contador de 26 bits
+    process (clk, rst)
+    begin
+        if rst = '1' then
+            count_26bit <= (others => '0');
+            enable_slow_count <= '0';
+        elsif rising_edge(clk) then
+            if count_26bit = "11001011011100110101100111" then  -- Aproximadamente 50 milhões (1 segundo com clock de 50 MHz)
+                count_26bit <= (others => '0');
+                enable_slow_count <= '1';  -- Habilita o contador lento
+            else
+                count_26bit <= count_26bit + 1;
+                enable_slow_count <= '0';
+            end if;
+        end if;
+    end process;
+
+    -- Processo do contador lento (Flip-Flop T)
+    process (clk, rst)
+    begin
+        if rst = '1' then
+            slow_count <= (others => '0');
+        elsif rising_edge(clk) then
+            if enable_slow_count = '1' then
+                if slow_count = "1001" then  -- Se chegar a 9, volta para 0
+                    slow_count <= (others => '0');
+                else
+                    slow_count <= slow_count + 1;
+                end if;
+            end if;
+        end if;
+    end process;
+
+    -- Saída dos dígitos
+    digit_out <= slow_count;
+
+end Behavioral;

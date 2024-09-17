@@ -1,0 +1,93 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Entidade do contador síncrono de 8 bits
+entity Contador_8bits is
+    Port (
+        clk : in  STD_LOGIC;  -- Sinal de clock
+        rst : in  STD_LOGIC;  -- Sinal de reset
+        Q   : out STD_LOGIC_VECTOR (7 downto 0)  -- Saída de 8 bits
+    );
+end Contador_8bits;
+
+architecture Behavioral of Contador_8bits is
+    -- Sinais intermediários para as saídas dos Flip-Flops
+    signal Q0, Q1, Q2, Q3, Q4, Q5, Q6, Q7 : STD_LOGIC;
+begin
+
+    -- Instância do Flip-Flop T para o bit menos significativo (Q0)
+    FF0: entity work.FlipFlop_T
+        port map (
+            T   => '1',       -- T sempre 1 para alternar a cada pulso de clock
+            clk => clk,
+            rst => rst,
+            Q   => Q0
+        );
+
+    -- Instância do Flip-Flop T para o bit Q1
+    FF1: entity work.FlipFlop_T
+        port map (
+            T   => Q0,        -- Alterna quando Q0 sobe
+            clk => clk,
+            rst => rst,
+            Q   => Q1
+        );
+
+    -- Instância do Flip-Flop T para o bit Q2
+    FF2: entity work.FlipFlop_T
+        port map (
+            T   => Q0 and Q1, -- Alterna quando Q0 e Q1 são 1
+            clk => clk,
+            rst => rst,
+            Q   => Q2
+        );
+
+    -- Instância do Flip-Flop T para o bit Q3
+    FF3: entity work.FlipFlop_T
+        port map (
+            T   => Q0 and Q1 and Q2,  -- Alterna quando Q0, Q1 e Q2 são 1
+            clk => clk,
+            rst => rst,
+            Q   => Q3
+        );
+
+    -- Instância do Flip-Flop T para o bit Q4
+    FF4: entity work.FlipFlop_T
+        port map (
+            T   => Q0 and Q1 and Q2 and Q3,  -- Alterna quando Q0, Q1, Q2 e Q3 são 1
+            clk => clk,
+            rst => rst,
+            Q   => Q4
+        );
+
+    -- Instância do Flip-Flop T para o bit Q5
+    FF5: entity work.FlipFlop_T
+        port map (
+            T   => Q0 and Q1 and Q2 and Q3 and Q4,  -- Alterna quando Q0 a Q4 são 1
+            clk => clk,
+            rst => rst,
+            Q   => Q5
+        );
+
+    -- Instância do Flip-Flop T para o bit Q6
+    FF6: entity work.FlipFlop_T
+        port map (
+            T   => Q0 and Q1 and Q2 and Q3 and Q4 and Q5,  -- Alterna quando Q0 a Q5 são 1
+            clk => clk,
+            rst => rst,
+            Q   => Q6
+        );
+
+    -- Instância do Flip-Flop T para o bit Q7
+    FF7: entity work.FlipFlop_T
+        port map (
+            T   => Q0 and Q1 and Q2 and Q3 and Q4 and Q5 and Q6,  -- Alterna quando Q0 a Q6 são 1
+            clk => clk,
+            rst => rst,
+            Q   => Q7
+        );
+
+    -- Atribuição da saída do contador
+    Q <= (Q7, Q6, Q5, Q4, Q3, Q2, Q1, Q0);
+
+end Behavioral;
